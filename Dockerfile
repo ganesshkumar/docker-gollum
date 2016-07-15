@@ -1,9 +1,10 @@
 FROM ruby
-RUN apt-get -y update && apt-get -y install libicu-dev
-RUN gem install gollum 
-RUN gem install github-markdown org-ruby
+RUN apt-get -y update && apt-get -y install libicu-dev && \
+    gem install gollum && \
+    gem install github-markdown org-ruby
+
 VOLUME /wiki
 WORKDIR /wiki
-CMD ["gollum"]
+CMD ["gollum", "--config",  "/config.rb"]
 EXPOSE 4567
 
